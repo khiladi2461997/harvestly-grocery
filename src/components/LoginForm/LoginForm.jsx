@@ -47,7 +47,7 @@ const LoginForm = () => {
       if (backendResponse.ok) {
         console.log('User data sent to backend');
         // Perform any other necessary actions upon successful storage
-        window.location.href = 'http://localhost:5173';
+        window.location.href = 'https://harvestly-grocery.vercel.app/';
       } else {
         console.error('Failed to send user data to backend');
         // Handle error case
@@ -121,7 +121,7 @@ const LoginForm = () => {
         localStorage.setItem('token', data.token); // Store the token in localStorage or cookies
         console.log('Login successful'); 
         resetFormFields();
-        window.location.href = 'http://localhost:5173';
+        window.location.href = 'https://harvestly-grocery.vercel.app/';
         // Log success
         // Perform actions upon successful login
         

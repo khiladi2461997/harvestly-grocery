@@ -77,7 +77,7 @@ const handleSignUp = async (e) => {
     if (response.ok) {
       // Handle successful sign-up
       localStorage.setItem('userId', userId);
-      window.location.href = 'http://localhost:5173/login';
+      window.location.href = 'https://harvestly-grocery.vercel.app//login';
     } else {
       // Handle sign-up errors
     }
