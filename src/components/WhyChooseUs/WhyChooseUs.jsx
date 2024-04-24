@@ -1,9 +1,58 @@
 import React from "react";
 import Wcheck from "../assets/Wcheck.svg";
 import { Link } from "react-router-dom";
+import Arrow from "../assets/move-right.svg";
 
 const WhyChooseUs = () => {
   return (
+    <div className="block max-w-full mb-28 px-10 md:px-20 xl:px-50 mt-20 ml-20 md:ml-28 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <a class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-4xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+      <div class="grid grid-cols-2 gap-2">
+        <div>
+          <img
+            class="h-auto max-w-full rounded-lg"
+            src="/image24@2x.png"
+            alt=""
+          />
+        </div>
+        <div>
+          <img
+            class="h-auto max-w-full rounded-lg"
+            src="/image23@2x.png"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="flex flex-col justify-between p-6 md:p-8 lg:p-10 leading-normal">
+        <h5 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Healthy & natural food for lovers of healthy food.
+        </h5>
+        <p class="mb-4 font-normal text-lg text-gray-700 dark:text-gray-400">
+          Imagine a world where healthy eating is not only convenient but also
+          enticing. Our health food ecommerce platform aims to make this
+          vision a reality.
+        </p>
+        <Link to="/shop">
+        <button className="w-[191px] h-[51px] relative bg-green-600 rounded-[53px] mt-16">
+          <div className="left-[40px] top-[16px] absolute text-white text-base font-semibold font-Poppins leading-tight">
+                      Shop now
+                    </div>
+            <div className=" w-[15px] h-8 left-[136px] top-[19.48px] absolute">
+                    <img className="text-gray-100" src={Arrow} alt="Icon" />
+                    </div>
+          </button>
+        </Link>
+      </div>
+    </a>
+  </div>
+  
+  );
+};
+
+export default WhyChooseUs;
+
+{
+  /*
     <div className="w-[1920px] h-[617px] relative">
       <div className="left-[1084px] top-[96px] absolute flex-col justify-start items-start gap-[26px] inline-flex">
         <div className="text-zinc-900 text-[40px] font-semibold font-['Poppins'] leading-[48px]">
@@ -82,7 +131,5 @@ const WhyChooseUs = () => {
         />
       </div>
     </div>
-  );
-};
-
-export default WhyChooseUs;
+  */
+}

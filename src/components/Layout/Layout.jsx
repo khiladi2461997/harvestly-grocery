@@ -19,11 +19,12 @@ const Layout = ({ children }) => {
   }, []);
   return (
     <div style={{ minHeight: '100vh', position: 'relative' }}>
-      
       <Navbar />
-      <main style={{ paddingBottom: '200px' }}>{children}   <Outlet /></main>
-      
-      <div className="lg:absolute lg:left-0 lg:top-0 lg:w-[400px]">
+      <main style={{ paddingBottom: '200px', marginBottom: '100px' }}>
+        {children}
+        <Outlet />
+      </main>
+      <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%' }}>
         <Footer />
       </div>
     </div>

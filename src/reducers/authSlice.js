@@ -11,6 +11,9 @@ const initialState = {
   error: null, // for monitoring the registration process.
 };
 
+
+
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -30,8 +33,18 @@ const authSlice = createSlice({
       state.user = null;
     },
   },
+  
 });
 
 export const { loginStart, loginSuccess, loginFailure, logout } =
   authSlice.actions;
 export default authSlice.reducer;
+
+{/*
+const initialState = {
+  user: null,
+  status: "idle",
+  error: null, // for monitoring the registration process.
+};
+
+*/ }

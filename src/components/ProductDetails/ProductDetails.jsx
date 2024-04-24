@@ -4,6 +4,8 @@ import Star from "../assets/Star.svg";
 import Kristin from "../assets/Kristin.svg";
 import ProductImage from "./ProductImage";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
+
+
 const ProductDetails = ({ product }) => {
   const [selected, setSelected] = useState(null);
 

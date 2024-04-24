@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Star from '../assets/Star.svg';
 import GStar from '../assets/Star 5.svg';
-import Bag from '../assets/plus.svg';
+import Bag from '../assets/Bag.svg';
 import { Link } from 'react-router-dom';
 
 const FeaturedProductGrid = () => {
@@ -11,13 +11,15 @@ const FeaturedProductGrid = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
   const [vegetablesData, setVegetablesData] = useState([]);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 12;
   
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get('https://harvestlyy.onrender.com/api/products');
+          const response = await axios.get('http://localhost:9001/api/products');
           setVegetablesData(response.data);
+          
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -34,7 +36,7 @@ const FeaturedProductGrid = () => {
  
  const fetchCurrentUser = async () => {
   try {
-    const response = await axios.get('https://harvestlyy.onrender.com/api/currentuser');
+    const response = await axios.get('http://localhost:9001/api/currentuser');
     if (response.data.loggedInUsers.length > 0) {
       const fetchedUserId = response.data.loggedInUsers[0].userId;
       setUserId(fetchedUserId); // Set the userId in state
@@ -48,7 +50,7 @@ const [message, setMessage] = useState('');
 
 const addToCart = async (id) => {
   try {
-    const response = await axios.post('https://harvestlyy.onrender.com/api/cart/add', {
+    const response = await axios.post('http://localhost:9001/api/cart/add', {
       productId: id,
       quantity: 1,
       userId: userId, // Use the userId from state directly
@@ -58,6 +60,55 @@ const addToCart = async (id) => {
   } catch (error) {
     console.error('Error adding to cart:', error);
   }
+};
+const renderVegetables = () => {
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const visibleVegetables = vegetablesData.slice(startIndex, endIndex);
+
+  return visibleVegetables.map((vegetable, index) => (
+    <Link to={`/products/${vegetable.id}`} key={index}>
+      <div className={`product-4x${index + 1} relative hover:scale-105 transform transition duration-300 ease-in-out`}>
+        <div className="product-image">
+          <img className="image-icon26 w-full h-64 object-cover" alt="" src={vegetable.img} />
+        </div>
+        <div className="product-info14">
+          <div className="testimonial-parent">
+            <div className="green-apple5" style={{ color: '#00B207' }}>{vegetable.name}</div>
+            <div className="price8">
+              <div className="address" style={{ color: '#00B207' }}>{vegetable.price}</div>
+            </div>
+          </div>
+          <div className="rating3 flex">
+            {Array(5).fill().map((_, i) => (
+              <img
+                className="rating-child12 w-6 h-6"
+                alt=""
+                src={i < vegetable.star ? Star : GStar}
+                key={i}
+              />
+            ))}
+          </div>
+        </div>
+        {isLoggedIn ? (
+          <img className="add-to-cart7 absolute right-0" alt="" src={Bag} onClick={() => addToCart(vegetable.id)} />
+        ) : (
+          <div onClick={() => alert('Please log in to add to cart')}>
+            <img className="add-to-cart7 absolute right-0" style={{ bottom: '20px' }} alt="" src={Bag} />
+          </div>
+        )}
+      </div>
+    </Link>
+  ));
+};
+
+
+const handleNextPage = () => {
+  setCurrentPage(currentPage + 1);
+};
+
+const handlePreviousPage = () => {
+  setCurrentPage(currentPage - 1);
 };
 
 const handleQuantityChange = (id, change) => {
@@ -85,6 +136,35 @@ const handleProductLeave = () => {
 };
 
   return (
+    <div className="block max-w-full mb-28 px-10 md:px-20 xl:px-50 mt-20 ml-20 md:ml-28 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <div className="featured-products">
+        <div className="grid grid-cols-4 gap-6 mt-20">{renderVegetables()}</div>
+        <div className="flex items-center justify-center mt-4">
+          <button
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+            className="flex items-center justify-center px-4 h-10 text-base font-medium text-gray-500 bg-blue-400 border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            Previous
+          </button>
+          <button
+            onClick={handleNextPage}
+            disabled={vegetablesData.length <= currentPage * pageSize}
+            className="flex items-center justify-center px-4 h-10 ms-3 text-base font-medium text-gray-500 bg-blue-400 border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  );
+};
+
+export default FeaturedProductGrid;
+
+   {/*
     <div className="mt-28">
       <div className="featured-products">
         <div className="grid grid-cols-4 gap-6 mt-20  ">
@@ -120,8 +200,7 @@ const handleProductLeave = () => {
     <img className="add-to-cart7 absolute right-0" alt="" src={Bag} onClick={() => addToCart(vegetable.id)} />
   ) : (
     <div onClick={() => alert('Please log in to add to cart')}>
-      {/* Placeholder for non-logged in user, could be a button or a different UI */}
-      {/* You can customize this to suit your design */}
+   
       <img className="add-to-cart7 absolute right-0" alt="" src={Bag}  />
     </div>
   )}
@@ -130,8 +209,4 @@ const handleProductLeave = () => {
           ))}
         </div>
       </div>
-    </div>
-  );
-};
-
-export default FeaturedProductGrid;
+  </div> */}

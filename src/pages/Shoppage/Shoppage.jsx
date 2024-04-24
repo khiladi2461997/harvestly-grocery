@@ -13,7 +13,7 @@ const Shoppage = () => {
   
   return (
     <div>
-   <DropDown/>
+   
 
    <FeaturedProductGrid/>
    

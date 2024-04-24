@@ -1,41 +1,69 @@
-
-
-import React , {useState}from 'react';
+import React, { useState } from "react";
+import Heading from "../Heading";
 
 const TopCategories = () => {
   const CategoriesData = [
     {
-      class: 'rounded-[4981px] flex flex-col items-start justify-start p-[16px] bg-cover bg-no-repeat bg-top icon3',
-      class2: 'relative w-10 h-10 overflow-hidden flex-shrink-0',
-      img: '/vegetable.svg',
-      name: 'Vegetables'
-    ,
+      class:
+        "rounded-[4981px] flex flex-col items-center justify-start p-[16px] bg-cover bg-no-repeat bg-top icon3",
+      class2: "relative w-10 h-10 overflow-hidden flex-shrink-0",
+      img: "/vegetable.svg",
+      name: "Vegetables",
     },
     {
-      class: 'rounded-[4981px] flex flex-col items-start justify-start p-[16px] bg-cover bg-no-repeat bg-top icon5',
-      class2: 'relative w-10 h-10 overflow-hidden flex-shrink-0',
-      img: '/fruits-1.svg',
-      name: 'Fruits',
-      
+      class:
+        "rounded-[4981px] flex flex-col items-center justify-start p-[16px] bg-cover bg-no-repeat bg-top icon5",
+      class2: "relative w-10 h-10 overflow-hidden flex-shrink-0",
+      img: "/fruits-1.svg",
+      name: "Fruits",
     },
     {
-      class: 'rounded-[4981px] flex flex-col items-start justify-start p-[16px] bg-cover bg-no-repeat bg-top icon6',
-      class2: 'relative w-10 h-10 overflow-hidden flex-shrink-0',
-      img: '/softdrink-1.svg',
-      name: 'Water and Drinks',
-      
+      class:
+        "rounded-[4981px] flex flex-col items-center justify-start p-[16px] bg-cover bg-no-repeat bg-top icon6",
+      class2: "relative w-10 h-10 overflow-hidden flex-shrink-0",
+      img: "/softdrink-1.svg",
+      name: "Water and Drinks",
     },
     {
-        class: 'rounded-[4981px] flex flex-col items-start justify-start p-[16px] bg-cover bg-no-repeat bg-top icon7',
-        class2: 'relative w-10 h-10 overflow-hidden flex-shrink-0',
-        img: '/snacks-1.svg',
-        name: 'Dairy Products',
-        
-      },
+      class:
+        "rounded-[4981px] flex flex-col items-center justify-start p-[16px] bg-cover bg-no-repeat bg-top icon7",
+      class2: "relative w-10 h-10 overflow-hidden flex-shrink-0",
+      img: "/snacks-1.svg",
+      name: "Dairy Products",
+    },
   ];
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
+     <div>
+      <div className="block max-w-36 px-10 ml-20 rounded-lg  hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div className="grid gap-4 px-2">
+          <div>
+            <Heading title="Top Categories"/>
+          </div>
+        </div>
+        <div className="grid grid-cols-5 gap-4 mt-10">
+          {CategoriesData.map((service, index) => (
+            <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex flex-col items-center pb-10">
+            <img className={service.class2} src={service.img} alt="Bonnie image"/>
+            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{service.name}</h5>
+            <span class="text-sm text-gray-500 dark:text-gray-400">{service.headline}</span>
+            
+        </div>
+           </div>
+          ))}
+        </div>
+      </div>
+      </div>
+    
+  );
+};
+
+export default TopCategories;
+
+{
+  /*
     <div className="mt-28">
       <div className="heading8 mb-4">
         <div className="normal text-2xl font-semibold font-poppins" style={{ color: '#1A1A1A' }}>
@@ -75,7 +103,5 @@ const TopCategories = () => {
         </div>
       </div>
     </div>
-  );
-};
-
-export default TopCategories;
+          */
+}

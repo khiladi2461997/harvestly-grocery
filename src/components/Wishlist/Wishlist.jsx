@@ -5,7 +5,7 @@ import { addProduct, subtractProduct, removeProduct } from '../../reducers/cartS
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const Cart = () => {
+const Wishlist = () => {
   const dispatch = useDispatch();
   const [cartItems, setCartItems] = useState([]);
   let userId = null;
@@ -25,7 +25,7 @@ const Cart = () => {
           console.log(userId)
           
           // Fetch cart items based on the user ID
-          const Productresponse = await axios.get(`http://localhost:9001/api/app/cart/${userId}`);
+          const Productresponse = await axios.get(`http://localhost:9001/api/app/wishlist/${userId}`);
           const items = Productresponse.data;
           console.log('Items before mapping:', items);
 
@@ -63,7 +63,7 @@ const Cart = () => {
   const removeFromCart = async ( userId , productId) => {
     try {
       // Send a DELETE request to remove the product from the cart based on productId and userId
-      await axios.delete(`http://localhost:9001/api/app/cart/${userId}/${productId}/remove`);
+      await axios.delete(`http://localhost:9001/api/app/wishlist/${userId}/${productId}/remove`);
       // After successful removal, update the cartItems state to reflect the changes
       const updatedItems = cartItems.filter(item => item.productId !== productId);
       setCartItems(updatedItems);
@@ -98,7 +98,7 @@ const Cart = () => {
       </div>
     </div>
   );};
-  export default Cart;
+  export default Wishlist;
   
 /*
   return (

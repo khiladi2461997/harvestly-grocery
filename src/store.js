@@ -1,11 +1,12 @@
-// store.js
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers'; // Assuming you have a rootReducer combining all reducers
+import { configureStore } from "@reduxjs/toolkit";
+import checkoutSlice from "./reducers/cartSlice";
+import authReducer from "./reducers/authSlice";
 
 const store = configureStore({
-  reducer: rootReducer,
-  middleware: [thunk], // Example middleware, if needed
-  devTools: process.env.NODE_ENV !== 'production', // Enable Redux DevTools in development
+  reducer: {
+    auth: authReducer,
+    cart: checkoutSlice,
+  },
 });
 
 export default store;

@@ -14,7 +14,8 @@ import FeaturedProductGrid from "./components/FeaturedProductGrid/FeaturedProduc
 import SignUp from "./components/SignUp/SignUp"
 import Navbar from "./components/Navbar/Navbar"
 import TopCategories from "./components/TopCategories/TopCategories"
-import LoginForm from './components/LoginForm/LoginForm';
+import LoginForm from './components/LoginForm/LoginFOrm';
+import Wishlist from './components/Wishlist/Wishlist';
 
 
 import Layout from './components/Layout/Layout';
@@ -50,6 +51,7 @@ const App = () => {
       />
       <Route path="/products/:id" element={<ProductDetails/>} />
       <Route path="/products/cart" element={<Cart/>} />
+      <Route path="/products/wishlist" element={<Wishlist/>} />
       <Route
         path="/login"
         element={
