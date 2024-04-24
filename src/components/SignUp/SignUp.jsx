@@ -66,7 +66,7 @@ const SignUp = () => {
     e.preventDefault();
     const userId = generateUserId(); // Generate or fetch the user ID (you may use a function or library to generate unique IDs)
     try {
-      const response = await fetch("http://localhost:9001/api/signup", {
+      const response = await fetch("https://harvestlyy.onrender.com/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const SignUp = () => {
       if (response.ok) {
         // Handle successful sign-up
         localStorage.setItem("userId", userId);
-        window.location.href = "http://localhost:5173/login";
+        window.location.href = "https://harvestlyy.onrender.com/login";
       } else {
         // Handle sign-up errors
       }

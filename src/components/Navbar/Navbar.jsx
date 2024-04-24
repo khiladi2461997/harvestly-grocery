@@ -36,13 +36,13 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:9001/api/currentuser");
+      const response = await fetch("https://harvestlyy.onrender.com/api/currentuser");
       if (response.ok) {
         const { loggedInUsers } = await response.json();
         if (loggedInUsers.length > 0) {
           const userId = loggedInUsers[0].userId;
           const logoutResponse = await fetch(
-            "http://localhost:9001/api/logout",
+            "https://harvestlyy.onrender.com/api/logout",
             {
               method: "POST",
               headers: {
@@ -83,7 +83,7 @@ const Navbar = () => {
   const handleSearch = async () => {
     try {
       const response = await fetch(
-        `http://localhost:9001/api/products?search=${searchTerm}`
+        `https://harvestlyy.onrender.com/api/products?search=${searchTerm}`
       );
       if (response.ok) {
         const products = await response.json();
