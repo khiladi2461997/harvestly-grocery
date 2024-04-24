@@ -90,7 +90,7 @@ const Navbar = () => {
         if (products.length > 0) {
           let foundProductId = products[0].id;
           console.log(foundProductId);
-          setProductId(foundProductId); //lt is the desired product
+          setProductId(foundProductId); // It is the desired product
           // history.push(`/products/${productId}`);
         } else {
           console.error("Product not found");
